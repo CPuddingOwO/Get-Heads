@@ -1,0 +1,48 @@
+name: package.yml
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release Tag'
+        required: true
+        default: 'v26.1'
+        type: string
+
+jobs:
+  build:
+    name: Build MCDR Plugin
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+
+      - name: Install MCDR
+        run: |
+          python -m pip install --upgrade pip
+          pip install mcdreforged
+
+      - name: Pack
+        run: |
+          mkdir -p output
+          python -m mcdreforged pack -o ./output
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcdr-plugin-${{ github.event.inputs.tag_name }}
+          path: output/*.mcdr
+          retention-days: 14
+
+      - name: Publish to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag_name }}
+          files: output/*.mcdr
+          generate_release_notes: true
