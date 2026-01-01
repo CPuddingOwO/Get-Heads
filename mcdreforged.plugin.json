@@ -1,14 +1,14 @@
 {
-  "id": "g0d_of_heads",
+  "id": "get_heads",
   "version": "2.0.0",
-  "name": "G0d of Heads",
+  "name": "Get Heads",
   "description": "获取任意玩家的任意数量的头颅，适配全版本",
-  "author": "SeeU_SAMA,FRUITS_CANDY",
+  "author": "SeeU_SAMA,FRUITS_CANDY,CPuddingOwO",
   "dependencies": {
     "mcdreforged": ">=2.6.0"
   },
-  "link": "https://github.com/Passion-Never-Dissipate/G0d-of-Heads",
-  "archive_name": "G0d-of-Heads-v{version}",
+  "link": "https://github.com/CPuddingOwO/Get-Heads.git",
+  "archive_name": "Get-Heads-v{version}",
 	"resources": [
 		"LICENSE"
 	]
